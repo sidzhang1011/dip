@@ -3,18 +3,17 @@ clc; clear; close all;
 square = imread('binary_square_distorted.tif');
 subplot(2,3,1), imshow(square);
 
-B = strel('square', 17);
+B = strel('square', 7);
 bSq = bwboundaries(square, 'noholes');
 % Show boundary as an image.
 imbSq = imcomplement(bound2im(bSq{1}, size(square, 1), size(square, 2)));
-imbSqb = imbSq;
 % imbSq = imdilate(imbSq, B);
 % link 
 temp = imcomplement(imbSq);
-temp = imdilate(temp, B);
-bSq2 = bwboundaries(temp, 'noholes');
-temp = imcomplement(bound2im(bSq2{1}, size(square, 1), size(square, 2)));
-subplot(2,3,2), imshow(temp);
+imbSq = imdilate(temp, B);
+bSq2 = bwboundaries(imbSq, 'noholes');
+imbSq = imcomplement(bound2im(bSq2{1}, size(square, 1), size(square, 2)));
+subplot(2,3,2), imshow(imbSq);
 
 % Compute and display the signature.
 dist = signature(bSq{1});
