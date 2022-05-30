@@ -1,0 +1,23 @@
+clear; clc; close all;
+f = im2double(imread('yeast_cells.tif'));
+f1 = imread('spot_shaded_text_image.tif');
+subplot(2,2,1), imshow(f1);
+
+% (a)
+T1a = adaptthresh(f, 0.8);
+g1a = imbinarize(f, T1a);
+subplot(2,2,2), imshow(g1a);
+
+% (b)
+% c1 = checkerboard(1024);
+% subplot(2,2,3), imshow(c1);
+
+% (c)
+data = localmean(f1, ones(3));
+
+% td = [1 2 3 4; 5 6 7 8; 9 10 11 12];
+% d text 
+gm = movingaveragethresh(f1, 20, 0.5);
+subplot(2,2,3), imshow(gm);
+
+% e text-sineshade.tif
