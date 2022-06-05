@@ -13,8 +13,4 @@ BW = BW > 0;
 fdvalues = regionprops(BW, 'Image');
 disp(fdvalues);
 subplot(1,4,1), imshow(BW);
-
-descp = fdvalues.Image;
-subplot(1,4,2), imshow(fdvalues(1).Image);
-subplot(1,4,3), imshow(fdvalues(2).Image);
-subplot(1,4,4), imshow(fdvalues(3).Image);
+% subplot(1,4,2), imshow(descp(1).Image);
