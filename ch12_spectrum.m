@@ -16,6 +16,6 @@ subplot(2,4,5), plot(srad1, 'r'), xlabel('r'), ylabel('S(r)'),
 subplot(2,4,6), plot(sang1, 'r'), xlabel('theta'), ylabel('S(theta)'), 
     title('random spectrum per theta');
 subplot(2,4,7), plot(srad2, 'r'), xlabel('r'), ylabel('S(r)'), 
-    title('random spectrum per radius');
+    title('ordered spectrum per radius');
 subplot(2,4,8), plot(sang2, 'r'), xlabel('theta'), ylabel('S(theta)'), 
-    title('random spectrum per theta');
+    title('ordered spectrum per theta');
