@@ -93,7 +93,8 @@ ni2 = i2 + [0, maxi4y - mini2y + 8];
 ni2f = bound2im(ni2, M, 2*N);
 ni4f = bound2im(i4, M, 2*N);
 icombine = ni4f + ni2f;
-subplot(2,3,6), imshow(icombine), title('4-element combined with 2-element');
+subplot(2,3,6), imshow(icombine), 
+title('4-element combined with 2-element');
 
 
 
