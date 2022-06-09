@@ -19,6 +19,7 @@ end
 
 if np/2 ~= round(np/2)
     s(end+1, :) = s(end, :);
+    np = np + 1;
 end
 
 % Create an alternating sequence of 1s and -1s for use in centering the
