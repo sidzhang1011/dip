@@ -33,6 +33,7 @@ end
 % Solidity: 0.3335
 
 % the best way is use EulerNumber, Circularity is also OK.
+% FilledArea is another alternative.
 
 
 % (b)
