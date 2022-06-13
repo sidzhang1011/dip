@@ -1,0 +1,4 @@
+clc; clear; close all;
+addpath proj13;
+
+f = imread('')
