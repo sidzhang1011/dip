@@ -1,4 +1,5 @@
 clear; clc; close all;
+
 f = imread('book-text-bw.jpg');
 f = rgb2gray(f);
 f = double(f >= 128);

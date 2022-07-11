@@ -1,0 +1,45 @@
+clc; clear; close all;
+
+fileNames = {'wingding-star-3pt.tif', 'wingding-star-5pt.tif', ...
+    'wingding-star-8pt.tif'};
+for k = 1:length(fileNames)
+    f{k} = im2double(imread(fileNames{k}));
+    if ndims(f{k}) == 3
+        f{k} = rgb2gray(f{k});
+    end
+    subplot(3,3,k), imshow(f{k})
+end
+
+np = 20;
+for k = 1:length(fileNames)
+    temp = imgaussfilt(f{k}, 15);
+    for j = 1:np
+        images{j, k} = imnoise(temp, 'speckle', 1);
+    end
+    subplot(3,3,3+k), imshow(images{np, k});
+end
+
+for k = 1:length(fileNames)
+    [NR{k}, NC{k}] = size(f{k});  
+    for j=1:np
+        cc = bwconncomp(imbinarize(images{j,k}));
+        % Extract the largest connected region.
+        numPixels = cellfun(@numel, cc.PixelIdxList);
+        [biggest, idx] = max(numPixels);
+        % Form a temporary image to hold the largest region.
+        temp = zeros(NR{k}, NC{k});
+        temp(cc.PixelIdxList{idx}) = 1;
+        % Get the boundary.
+        tb = bwboundaries(temp);
+        b{j, k} = tb{1};
+    end
+    bim{k} = bound2im(b{np, k}, NR{k}, NC{k});
+    subplot(3,3,6+k), imshow(bim{k});
+end
+
+for k = 1:length(fileNames)
+    for j = 1:np
+        s{j, k} = signature(b{j, k});
+    end
+end
+
