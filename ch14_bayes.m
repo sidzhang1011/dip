@@ -52,8 +52,8 @@ for k = 1:Nc
 end
 
 disp('training data:')
-disp(rate)
 disp(classTrainSet)
+disp(rate)
 
 disp('test data:')
 disp(classTestSet)

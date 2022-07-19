@@ -51,9 +51,10 @@ for k = 1:Nc
     testrate(k) = classTestSet(k, k)/sum(classTestSet(k,:)) * 100;
 end
 
-disp
-disp(rate)
+disp('training data:')
 disp(classTrainSet)
+disp(rate)
 
+disp('test data:')
 disp(classTestSet)
 disp(testrate)
