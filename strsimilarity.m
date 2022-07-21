@@ -22,7 +22,7 @@ end
 
 % Make sure the inputs are character vectors and not higher-dimensional 
 % character arrays.
-if ~(size(a,l) == 1 || size(a,2) == 1) && ~(size(b,l) == 1 || size(b,2) == 1)
+if ~(size(a,1) == 1 || size(a,2) == 1) && ~(size(b,1) == 1 || size(b,2) == 1)
     error('a and b must be character vectors') 
 end
 
