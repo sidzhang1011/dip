@@ -43,19 +43,65 @@ end
 for I = 1:Nc
     for J = 1:Nc
         classTrainSet(I, J) = numel(find(d{I} == J));
-        classTestSet(I, J) = numel(find(dtest{I} == J));        
+        classTestSet(I, J) = numel(find(dtest{I} == J));   
+    end
+    error{I} = 2 * find(d{I} ~= I) - 1;
+end
+
+
+% 14.3 (a)
+mi = im2double(maskimage);
+max1 = mi == max(mi(:));
+mi(max1) = 0.999;
+for I = 1:Nc
+    errorIndex = R{I}(error{I});
+    mi(errorIndex) = 1.0;
+end
+rgbmi = imcolorcode(mi, [0 1 0]);
+subplot(3,3,6), imshow(rgbmi);
+
+
+% 14.3(b)
+allImages = reshape(imstack, M*N, 4);
+disall = bayesgauss(allImages, Ctrain, Mtrain);
+for k = 1:Nc
+    newimage = zeros(M, N);
+    newimage(find(disall == k)) = 1.0;
+    subplot(3,3,6+k), imshow(newimage);
+end
+
+
+% 14.3(c) 
+% besides the mask image, we don't know whether the classification
+% is right or not
+
+
+% 14.3(d)
+imstack2 = cat(3, f{1}, f{2}, f{3});
+
+for k = 1:Nc
+    [X2{k}, R2{k}] = imstack2vectors(imstack2, mask{k});
+    [ctrain2{k}, mtrain2{k}] = covmatrix(X2{k});
+end
+
+Ctrain2 = cat(3, ctrain2{1}, ctrain2{2}, ctrain2{3});
+Mtrain2 = cat(2, mtrain2{1}, mtrain2{2}, mtrain2{3})';
+
+
+for k = 1:Nc
+    d2{k} = bayesgauss(X2{k}, Ctrain2, Mtrain2);
+end
+
+for I = 1:Nc
+    for J = 1:Nc
+        classTrainSet(I, J) = numel(find(d2{I} == J));
     end
 end
 
 for k = 1:Nc
     rate(k) = classTrainSet(k, k)/sum(classTrainSet(k,:)) * 100;
-    testrate(k) = classTestSet(k, k)/sum(classTestSet(k,:)) * 100;
 end
-
-disp('training data:')
+ 
+disp('new training data:')
 disp(classTrainSet)
 disp(rate)
-
-disp('test data:')
-disp(classTestSet)
-disp(testrate)
