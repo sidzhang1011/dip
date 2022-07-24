@@ -1,4 +1,4 @@
-function ouput = lmsePerceptronTrain(input)
+function output = lmsePerceptronTrain(input)
 %lmsePerceptronTrain LMSE training of two-class perception.
 %   OUTPUT = lmsePerceptronTrain(INPUT) training of two-class perceptron. 
 %   The input and output parameters of structures are defined as follows.
@@ -70,25 +70,25 @@ w = input.W0;
 output.ActualEpochs = 0;
 
 % ITERATE.
+E = zeros(1, np);
 for I = 1:input.NumEpochs
     over = true;
     for J = 1:np
-        E = 0.5 * (input.r(J) - w_last'*X(:, J)) ^ 2;
-        if E > input.MSEDelta
-            w = w_last + input.Alpha * (input.r(J) - w_last' * X(:,J)) ...
-            * X(:,J);
+        t = w_last'*X(:,J);
+        E(J) = 0.5 * (input.r(J) - t) ^ 2;
+        if E(J) > input.MSEDelta
+            w = w_last + input.Alpha * (input.r(J) - t) * X(:,J);
             w_last = w;            
             over = false;
         end
     end
-    % Exit if convergence was not set to false for an entire epoch.
+       
+    output.MSE(I) = sum(E(:))/np;
+
+    % Exit if E(i) <= input.MSEDelta for i = 1, 2, ..., np
     if over
-%         output.MSE = E;
-%         output.W = w_last;
-%         output.ActualEpochs = I;
         break
     end
 end
-output.MSE = E;
 output.ActualEpochs = I;
 output.W = w_last;
