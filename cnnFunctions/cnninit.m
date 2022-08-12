@@ -283,7 +283,7 @@ function [cnn,fcnn] = initweights(cnn,fcnn,cnnparam)
 % from the approach suggested by Xavier Glorot and Yoshua Bengio for
 % sigmoid activation: "Understanding the Difficulty of Training Deep
 % Forward Neural Networks," Proc. 13th Int'l Conf. on Artificial
-% Intellince and Statistics, pp. 249–256, 2010.
+% Intellince and Statistics, pp. 249Â–256, 2010.
 %
 % For the CNN  weights have the form cnn(k).KernelWeights{i}{j} where i
 % ranges from 1:numInputMaps and j ranges from 1:numOutputMaps. Thus,
@@ -313,7 +313,7 @@ for k = 1:Lc
    m = cnn(k).KernelSize;
    din = cnn(k).NumInputMaps;
    dout = cnn(k).NumOutputMaps;
-   if ~isodd(m)
+   if mod(m,2) == 0
       error('Kernel dimensions must be odd')
    end
    for j = 1:cnn(k).NumOutputMaps

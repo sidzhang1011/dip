@@ -168,7 +168,7 @@ function [] = cnninfo()
 % cnndatain.R
 %  The class membership matrix. This is a matrix of size NC-by-NI, where
 %  NC is the number of pattern classes. As explained in Section 14.5,
-%  column ccndatain.R(:,k) has a 1 in the jth position if the kth
+%  column ccndatain.R(j,k) has a 1 in the jth position if the kth
 %  pattern vector belongs to class j.
 %
 % cnndatain.Epochs

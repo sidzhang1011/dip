@@ -1,5 +1,5 @@
 function cnn = cnnff(cnn,minibatch)
-%CNNFF Convolutional net network feedforward.
+%CNNFF Convolutional neural network feedforward.
 %   CNN = CNNFF(CNN,MINIBATCH) feedforward of MINIBATCH through
 %   convolutional neural network CNN. This function is based on the
 %   entries in the second row of Table 14.10 in DIPUM3E. 

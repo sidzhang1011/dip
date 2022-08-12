@@ -7,7 +7,7 @@ function cnndataout = cnntrain(cnndatain)
 %
 %   at the prompt for a detailed description of all parameters.
 %
-%   NOTE: The custoim folder FCNNtoolbox must be in the MATLAB path.
+%   NOTE: The custom folder FCNNtoolbox must be in the MATLAB path.
 %
 %   TRAINING STARTING "FRESH." The inputs to cnntrain are the result of
 %   running function cnninit: [cnn,fcnn] = cnninit(cnnparam), whose
